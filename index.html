@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev - Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fdf2f8;
+      background: linear-gradient(135deg, #2d033b, #810ca8, #a12adf);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
+      font-size: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      background: linear-gradient(45deg, #ff80bf, #ff2d55, #fcd34d);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: gradientText 5s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradientText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h2.section-title {
+      font-size: 2.8rem;
+      color: #fcd34d;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2.section-title::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: #ff2d55;
+      border-radius: 2px;
+    }
+
+    .leftsection p {
+      font-size: 1.5rem;
+      color: #fef9ff;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+      background: transparent;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10vw;
+      height: 80px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav .left {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fcd34d;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+      position: relative;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fdf2f8;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #ff2d55;
+      transition: 0.4s ease;
+    }
+
+    nav ul li a:hover {
+      color: #fcd34d;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 60px 10vw;
+    }
+
+    .firstsection {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 85vh;
+      flex-wrap: wrap;
+    }
+
+    .leftsection {
+      max-width: 50%;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      background: linear-gradient(45deg, #ff2d55, #ff80bf);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      margin-right: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      background: linear-gradient(45deg, #fcd34d, #ff2d55);
+      transform: scale(1.1);
+      color: #2d033b;
+    }
+
+    .rightsection img {
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid transparent;
+      background-image: radial-gradient(circle at top left, #ff80bf, #2d033b);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      box-shadow: 0 0 40px rgba(252, 211, 77, 0.5);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      animation: bounceIn 2s ease;
+    }
+
+    .rightsection img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #fcd34d;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    .education-section,
+    .certifications-section,
+    .experience-section,
+    .contact-section {
+      text-align: center;
+    }
+
+    .timeline-item {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 700px;
+      box-shadow: 0 0 15px rgba(252, 211, 77, 0.3);
+      transition: transform 0.3s ease, background 0.3s ease;
+      text-align: left;
+      border-left: 5px solid #ff2d55;
+    }
+
+    .timeline-item:hover {
+      transform: scale(1.05);
+      background: rgba(255, 45, 85, 0.2);
+    }
+
+    .timeline-item h3 {
+      color: #fcd34d;
+      margin-bottom: 10px;
+      font-size: 1.6rem;
+    }
+
+    .timeline-item p {
+      color: #fdf2f8;
+      font-size: 1.2rem;
+    }
+
+    .about-section p {
+      line-height: 1.8;
+      color: #fdf2f8;
+      margin-bottom: 1em;
+    }
+
+    .skills-section ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding-left: 0;
+    }
+
+    .skills-section li {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 12px 18px;
+      border-radius: 8px;
+      color: #fdf2f8;
+      text-align: center;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .skills-section li:hover {
+      transform: scale(1.1);
+      background: #ff2d55;
+      color: #2d033b;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 14px;
+      font-size: 18px;
+      border-radius: 6px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #2d033b;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 2px solid #ff2d55;
+    }
+
+    .contact-form button {
+      padding: 16px;
+      background: linear-gradient(45deg, #fcd34d, #ff2d55);
+      color: #2d033b;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background: linear-gradient(45deg, #ff2d55, #ff80bf);
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.5);
+      color: #fcd34d;
+      padding: 40px 10vw;
+      text-align: center;
+    }
+
+    .footer-contact {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      font-size: 1rem;
+    }
+
+    .footer-contact a {
+      color: #ff80bf;
+      text-decoration: none;
+    }
+
+    .footer-contact a:hover {
+      color: #fcd34d;
+      text-decoration: underline;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="particles-js"></div>
+
+   <main>
+    <header>
+      <nav>
+        <div class="left">Dev's Portfolio</div>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="firstsection reveal">
+      <div class="leftsection">
+        <h1>Hello, I'm <span style="color: #dfb6b2">Dev Dattatray Khairmode</span></h1>
+        <p>I am a passionate <span id="element"></span></p>
+        <div>
+          <a href="Resume.pdf" download><button class="btn">Download Resume</button></a>
+        </div>
+      </div>
+      <div class="rightsection">
+        <img src="dev.jpg" alt="Developer Illustration" />
+      </div>
+    </section>
+
+    <section id="about" class="about-section reveal">
+      <h2 class="section-title">About Me</h2>
+      <p>Hi! I’m Dev Dattatray Khairmode, a tech enthusiast and aspiring Computer Engineer from Kolhapur, Maharashtra. I
+        completed my 10th standard from Pradnya Prabodhini Prashala Sangli, scoring <b>81.60%</b>, and recently
+        graduated
+        with a Diploma in Computer Science Engineering from Bapuji Salunkhe Institute, Kolhapur, with an impressive
+        <b>79.47%</b>.</p>
+      <br>
+      <p>During my academic journey, I’ve developed strong skills in <b>Web Development, Android App Development, and
+          emerging technologies like Generative AI and Data Science.</b> I’ve completed internships where I built
+        responsive web applications and Android apps using Java and XML, gaining practical industry experience.</p>
+      <br>
+      <p>I’m passionate about crafting digital solutions that solve real-world problems, blending creativity with
+        technology. I love exploring new tools and frameworks, and I’m driven to constantly learn and improve my skill
+        set.</p>
+      <br>
+      <p>My next step is to pursue <b>B.Tech in Computer Science Engineering</b> to deepen my technical expertise and
+        expand my career opportunities in software development and innovative tech fields.</p>
+      <br>
+      <p>Beyond tech, I enjoy connecting with like-minded people, working on creative side projects, and keeping up with
+        trends in AI and software development.</p>
+      <br>
+      <p>Let’s connect and build something amazing together!!!</p>
+    </section>
+
+    <section class="education-section reveal" id="education">
+      <h2 class="section-title">Education Timeline</h2>
+      <div class="timeline-item">
+        <h3>2025 → Future</h3>
+        <p><b>B.Tech in Computer Science Engineering</b><br>
+          Planning to pursue B.Tech in CSE to deepen technical skills and expand career opportunities.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2022 - 2025</h3>
+        <p><b>Diploma in Computer Science Engineering</b><br>
+          Bapuji Salunkhe Institute, Kolhapur — Secured 79.47%.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2022</h3>
+        <p><b>10th Standard (SSC)</b><br>
+          Pradnya Prabodhini Prashala, Sangli — Scored 81.60%.</p>
+      </div>
+    </section>
+
+    <section class="certifications-section reveal" id="certifications">
+      <h2 class="section-title">Certifications</h2>
+      <div class="timeline-item">
+        <h3>Data Visualisation:</h3>
+        <p></p>
+        <a href="tata.pdf" target="_blank"><button class="btn">View Certificate</button></a>
+      </div>
+      <div class="timeline-item">
+        <h3>Quiz Master:</h3>
+        <p></p>
+        <a href="event.pdf" target="_blank"><button class="btn">View Certificate</button></a>
+      </div>
+    </section>
+
+    <section class="experience-section reveal" id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline-item">
+        <h3>Intern - Android Application Developer</h3>
+        <p><strong>iGAP Technologies Pvt. Ltd.</strong><br>
+          Duration: 03 June 2024 – 13 July 2024<br>
+          Worked on real-time Android development projects and tasks. Demonstrated diligence, punctuality, and
+          consistent learning throughout the internship.</p>
+        <a href="igap.jpg" target="_blank"><button class="btn">View Certificate</button></a>
+      </div>
+      <div class="timeline-item">
+        <h3>Certificate - Introduction to Generative AI</h3>
+        <p><strong>Simplilearn</strong><br>
+          Issued: 08 July 2025<br>
+          Gained foundational knowledge of Generative AI concepts, tools, and practical use cases.</p>
+        <a href="simplilearn.pdf" target="_blank"><button class="btn">View Certificate</button></a>
+      </div>
+    </section>
+
+    <section class="contact-section reveal" id="contact">
+      <h2 class="section-title">Contact Me</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footer-contact">
+        <p><strong>Phone:</strong> <a href="tel:9623048329">9623048329</a></p>
+        <p><strong>Email:</strong> <a href="mailto:devkhairmode1107@gmail.com">devkhairmode1107@gmail.com</a></p>
+        <p><strong>LinkedIn:</strong> <a
+            href="https://www.linkedin.com/in/dev-khairmode-591082374?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+            target="_blank">linkedin.com/in/yourprofile</a></p>
+        <p><strong>Instagram:</strong> <a
+            href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=kbstiup"
+            target="_blank">instagram.com/yourprofile</a></p>
+      </div>
+    </footer>
+  </main>
+
+
+
+  <!-- Typed.js -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <script>
+    var typed = new Typed('#element', {
+      strings: ['Computer Engineer.', 'Web Developer.', 'App Developer.'],
+      typeSpeed: 50,
+      loop: true
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 70 },
+        color: { value: "#fcd34d" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#fcd34d",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          push: { particles_nb: 4 }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
